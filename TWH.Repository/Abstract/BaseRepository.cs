@@ -7,20 +7,20 @@ using TWH.Entities;
 
 namespace TWH.Repository
 {
-    public abstract class BaseRepository<TEntity, TEntityIdType> : IRepository<TEntity, TEntityIdType> where TEntity : BaseEntityID<TEntityIdType>, new()
+    public abstract class BaseRepository<TEntity, TEntityIdType> : IDisposable where TEntity : BaseEntityID<TEntityIdType>, new()
     {
-        public UnitOfWork _unitOfWork { get;set; }
+        public UnitOfWork unitOfWork { get;set; }
         protected DataContext DbContext
         {
             get
             {
-                return _unitOfWork.DbContext;
+                return unitOfWork.DbContext;
             }
         }
 
         public BaseRepository(UnitOfWork unitOfWork)
         {
-            this._unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork;
         }
 
         public void Delete(TEntity entity)
@@ -31,8 +31,8 @@ namespace TWH.Repository
 
         public void Dispose()
         {
-            if (_unitOfWork != null)
-                _unitOfWork.Dispose();
+            if (unitOfWork != null)
+                unitOfWork.Dispose();
 
             GC.SuppressFinalize(this);
         }
@@ -40,9 +40,9 @@ namespace TWH.Repository
         {
             DbContext.SaveChanges();
         }
-        public IQueryable<TEntity> GetAll()
+        public IEnumerable<TEntity> GetAll()
         {
-            return DbContext.Set<TEntity>();
+            return DbContext.Set<TEntity>().ToList();
         }
 
         public TEntity GetById(TEntityIdType id)
@@ -56,9 +56,9 @@ namespace TWH.Repository
             DbContext.SaveChanges();
         }
 
-        public IQueryable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
+        public IEnumerable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
         {
-            return DbContext.Set<TEntity>().Where(predicate);
+            return DbContext.Set<TEntity>().Where(predicate).ToList();
         }
 
     }

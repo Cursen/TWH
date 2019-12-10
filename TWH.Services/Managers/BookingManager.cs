@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TWH.Services
 {
-    class RoomBookingManager
+    public class BookingManager
     {
     }
 }

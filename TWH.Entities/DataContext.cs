@@ -15,8 +15,8 @@ namespace TWH.Entities
         }
 
         public DbSet<Cat> Cats { get; set; }
-            public DbSet<catImage> Customers { get; set; }
-            public DbSet<Booking> Bookings { get; set; }
-            public DbSet<Room> Rooms { get; set; }
+        public DbSet<CatImage> Customers { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Room> Rooms { get; set; }
     }
 }

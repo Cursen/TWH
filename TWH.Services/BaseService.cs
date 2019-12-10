@@ -40,9 +40,9 @@ namespace TWH.Services
         {
             return Repository.GetById(id);
         }
-        public virtual void Add(TEntity entity)
+        public virtual void Insert(TEntity entity)
         {
-            Repository.Add(entity);
+            Repository.Insert(entity);
         }
         public virtual void Delete(TEntity entity)
         {

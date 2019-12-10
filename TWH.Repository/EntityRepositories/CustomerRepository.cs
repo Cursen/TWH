@@ -5,7 +5,7 @@ using TWH.Entities.Models;
 
 namespace TWH.Repository
 {
-    public class CustomerRepository : BaseRepository<Customer>
+    public class CustomerRepository : BaseRepository<Customer, Guid>
     {
         public CustomerRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
