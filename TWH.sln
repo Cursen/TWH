@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29503.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.Entities", "TWH.Entities\TWH.Entities.csproj", "{59BCF82E-3881-40D2-9A90-AC060783978A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWH.Repository", "TWH.Repository\TWH.Repository.csproj", "{503ECFEC-E06F-4DAE-851D-AFF0EC8FFF99}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.Repository", "TWH.Repository\TWH.Repository.csproj", "{503ECFEC-E06F-4DAE-851D-AFF0EC8FFF99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWH.Services", "TWH.Services\TWH.Services.csproj", "{14D4ACBD-413E-482F-BAA2-0C07B55B44EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{503ECFEC-E06F-4DAE-851D-AFF0EC8FFF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{503ECFEC-E06F-4DAE-851D-AFF0EC8FFF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{503ECFEC-E06F-4DAE-851D-AFF0EC8FFF99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D4ACBD-413E-482F-BAA2-0C07B55B44EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D4ACBD-413E-482F-BAA2-0C07B55B44EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D4ACBD-413E-482F-BAA2-0C07B55B44EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D4ACBD-413E-482F-BAA2-0C07B55B44EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

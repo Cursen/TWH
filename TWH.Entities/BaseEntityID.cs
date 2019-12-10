@@ -4,8 +4,8 @@ using System.Text;
 
 namespace TWH.Entities
 {
-    public abstract class EntityBaseID<Guid>
+    public abstract class BaseEntityID<TEntityIdType>
     {
-        public Guid Id { get; protected set; }
+        public TEntityIdType Id { get; protected set; }
     }
 }

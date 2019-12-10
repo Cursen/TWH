@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TWH.Entities.Models
 {
-    public class Customer : EntityBaseID<Guid>
+    public class Customer : BaseEntityID<Guid>
     {
         public Guid ID { get; set; }
         public string Email { get; set; }

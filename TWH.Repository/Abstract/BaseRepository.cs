@@ -7,20 +7,20 @@ using TWH.Entities;
 
 namespace TWH.Repository
 {
-    public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity, TEntityIdType> : IRepository<TEntity, TEntityIdType> where TEntity : BaseEntityID<TEntityIdType>, new()
     {
-        public UnitOfWork unitOfWork { get;set; }
+        public UnitOfWork _unitOfWork { get;set; }
         protected DataContext DbContext
         {
             get
             {
-                return UnitOfWork.DbContext;
+                return _unitOfWork.DbContext;
             }
         }
 
         public BaseRepository(UnitOfWork unitOfWork)
         {
-            this.unitOfWork = unitOfWork;
+            this._unitOfWork = unitOfWork;
         }
 
         public void Delete(TEntity entity)
@@ -31,18 +31,21 @@ namespace TWH.Repository
 
         public void Dispose()
         {
-            if (unitOfWork != null)
-                unitOfWork.Dispose();
+            if (_unitOfWork != null)
+                _unitOfWork.Dispose();
 
             GC.SuppressFinalize(this);
         }
-
+        public virtual void SaveChanges()
+        {
+            DbContext.SaveChanges();
+        }
         public IQueryable<TEntity> GetAll()
         {
             return DbContext.Set<TEntity>();
         }
 
-        public TEntity GetById(Guid id)
+        public TEntity GetById(TEntityIdType id)
         {
             return DbContext.Set<TEntity>().Find(id);
         }

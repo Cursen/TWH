@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TWH.Entities.Models
 {
-    public class Booking : EntityBaseID<Guid>
+    public class Booking : BaseEntityID<Guid>
     {
         //TODO store cats food selection, how do you deal with several rooms, different dates being booked by a customer.
         public Guid ID { get; set; }

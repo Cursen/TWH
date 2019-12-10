@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TWH.Entities.Models
 {
-    public class Cat : EntityBaseID<Guid>
+    public class Cat : BaseEntityID<Guid>
     {
         //TODO set ranges.
         public Guid ID { get; set; }
