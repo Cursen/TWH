@@ -5,9 +5,9 @@ using TWH.Entities.Models;
 
 namespace TWH.Repository.EntityRepositories
 {
-    public class catImageRepository : BaseRepository<CatImage, Guid>
+    public class CatImageRepository : BaseRepository<catImage, Guid>
     {
-        public catImageRepository(UnitOfWork unitOfWork) : base(unitOfWork)
+        public CatImageRepository(UnitOfWork unitOfWork) : base(unitOfWork)
         {
 
         }

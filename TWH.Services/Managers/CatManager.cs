@@ -26,10 +26,10 @@ namespace TWH.Services
             catService.Insert(cat);
             catService.SaveChanges();
         }
-        //TODO check HttpPostedFileBase for Images being inserted.
+        //TODO ensure that the file is checked. Check type of file, and content to prevent issues arrising.
         public void Update(Cat cat, IFormFile newImage, bool? removeOldImage)
         {
-            catImage mImage = newImage.
+
         }
 
 
