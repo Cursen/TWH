@@ -14,6 +14,7 @@ namespace TWH.Entities.Models
         public int ChipID { get; set; }
         public string Name { get; set; }
         public string Desc { get; set; }
+        public Guid? ImageID { get; set; }
         public virtual catImage Image { get; set; }
             
     }

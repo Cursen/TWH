@@ -8,10 +8,11 @@ namespace TWH.Entities.Models
     {
         //TODO store cats food selection, how do you deal with several rooms, different dates being booked by a customer.
         public Guid ID { get; set; }
-        public virtual Customer Customer { get; set; }
-        public virtual LinkedList<Cat> Cats { get; set; }
-        public virtual Room BookedRoom { get; set; }
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public virtual Customer customer { get; set; }
+        public virtual LinkedList<Cat> cats { get; set; }
+        public virtual Room bookedRoom { get; set; }
+        public DateTime startDate { get; set; }
+        public DateTime endDate { get; set; }
+        public DateTime bookinDate { get; set; }
     }
 }

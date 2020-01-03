@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -48,6 +49,11 @@ namespace TWH.Repository
         public TEntity GetById(TEntityIdType id)
         {
             return DbContext.Set<TEntity>().Find(id);
+        }
+
+        public virtual bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return DbContext.Set<TEntity>().Any(predicate);
         }
 
         public void Insert(TEntity entity)

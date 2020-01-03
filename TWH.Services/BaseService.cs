@@ -30,11 +30,15 @@ namespace TWH.Services
         }
         public virtual IEnumerable<TEntity> GetAll()
         {
-            Repository.GetAll();
+            return Repository.GetAll();
         }
         public virtual IEnumerable<TEntity> SearchFor(Expression<Func<TEntity, bool>> predicate)
         {
             return Repository.SearchFor(predicate);
+        }
+        public virtual bool Any(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Repository.Any(predicate);
         }
         public virtual TEntity GetById(TEntityIdType id)
         {
