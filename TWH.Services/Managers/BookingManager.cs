@@ -23,7 +23,7 @@ namespace TWH.Services
         }
         public IEnumerable<Booking> ListBookingsForCustomer(Guid userID)
         {
-            return bookingService.SearchFor(x => x.ID == userID);
+            return bookingService.SearchFor(x => x.Id == userID);
         }
         //TODO make customer be customerID instead(so you dont transfer object, but object id??
         public Booking PrepareBookingRequest(Guid roomID, Guid userID, DateTime startDate, DateTime endDate, LinkedList<Cat> cats)
@@ -43,9 +43,9 @@ namespace TWH.Services
             return booking;
         }
         //TODO Customer customer is basicly who is logged in it seems in example, cannot be used here as the employee is logged in.
-        public Booking MakeBooking(Booking bookingRequest, string Email)
+        public Booking MakeBooking(Booking bookingRequest)
         {
-            if (bookingService.Any(x => x.bookedRoom.ID == bookingRequest.bookedRoom.ID && x.startDate > bookingRequest.endDate && bookingRequest.startDate > bookingRequest.endDate))
+            if (bookingService.Any(x => x.bookedRoom.Id == bookingRequest.bookedRoom.Id && x.startDate > bookingRequest.endDate && bookingRequest.startDate > bookingRequest.endDate))
                 {
                 throw new DataMisalignedException("The room is already booked within this date range");
                 }
@@ -55,7 +55,6 @@ namespace TWH.Services
                 bookingService.SaveChanges();
                 return bookingRequest;
                 }
-            }
         }
     }
 }

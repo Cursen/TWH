@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TWH.Entities.Enum
+namespace TWH.Entities
 {
-    public enum UserType
+    class DbInitialiser
     {
-        NORMAL,
-        ADMIN
     }
 }
