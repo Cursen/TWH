@@ -8,7 +8,7 @@ using TWH.Repository;
 
 namespace TWH.API.Controllers
 {
-    public class BaseController : ApiController
+    public class BaseController : Controller
     {
         public UnitOfWork unitOfWork { get; set; }
         public BaseController()

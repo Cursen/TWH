@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http;
 using TWH.Entities.Models;
 using TWH.Services;
 using AuthorizeAttribute = System.Web.Http.AuthorizeAttribute;
@@ -12,7 +11,9 @@ using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
 
 namespace TWH.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [ApiController]
+    [Route("[controller]")]
     public class BookingController : BaseController
         {
         private BookingManager bookings;
@@ -21,47 +22,43 @@ namespace TWH.API.Controllers
         {
             bookings = new BookingManager(unitOfWork);
         }
-        public IHttpActionResult GetRoomBookings(int roomNumber)
+        [HttpGet]
+        [Route("b")]
+        public IEnumerable<Booking> GetRoomBookings(int roomNumber)
         {
             //get a list of all bookings of which is this room.
             //then return that list.
             var roomBookings = bookings.bookingService.GetAll().Where(x => x.bookedRoom.Number == roomNumber);
-            if (roomBookings == null)
-            {
-              return NotFound();
-            }
-            else
-            {
-              return Ok(roomBookings);
-            }
+
+              return roomBookings;
         }
-        public IHttpActionResult GetUserBookings(string email)
+        [HttpGet]
+        [Route("k")]
+        public IEnumerable<Booking> GetUserBookings(string email)
         {
             var roomBookings = bookings.bookingService.GetAll().Where(x => x.customer.Email == email);
-            if(roomBookings == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                return Ok(roomBookings);
-            }
+                return roomBookings;
         }
-        public IHttpActionResult MakeBooking(int roomNumber, DateTime startDate, DateTime endDate, string userEmail, LinkedList<Cat> cats)
+        [HttpGet]
+        [Route("z")]
+        public Booking MakeBooking(int roomNumber, DateTime startDate, DateTime endDate, string userEmail, LinkedList<Cat> cats)
         {
             //get list of bookings of given room. Then check if it works
             var roomBookings = GetRoomBookings(roomNumber);
-            if(roomBookings == null)
-            {
-                return NotFound();
-            }
-            else
-            {
                 Guid roomID = bookings.roomService.SearchFor(x => x.Number == roomNumber).FirstOrDefault().Id;
                 Guid userID = bookings.customerService.SearchFor(x => x.Email == userEmail).FirstOrDefault().Id;
-                return Ok(bookings.MakeBooking(bookings.PrepareBookingRequest(roomID, userID, startDate, endDate, cats)));
-                }
-            }
-    }
+                return bookings.MakeBooking(bookings.PrepareBookingRequest(roomID, userID, startDate, endDate, cats));
+        }
+        [HttpGet]
+        public IEnumerable<Room> GetRooms()
+        {
+            return bookings.roomService.GetAll();
+        }
+        [HttpPost]
+        [Route("addRoom")]
+        public void addRoom(int roomNumber, int maxCats)
+        {
+            bookings.roomService.Insert(new Room { Number = roomNumber, MaxCats = maxCats});
+        }
     }
 }

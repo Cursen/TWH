@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TWH.Entities
+namespace TWH.Entity.Models
 {
-    class DbInitialiser
+    class Booking
     {
     }
 }

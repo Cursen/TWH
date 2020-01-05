@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.React", "TWH.React\TWH.React.csproj", "{569628DD-D15E-477B-AFD0-3209B9CD3EC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWH.API", "TWH.API\TWH.API.csproj", "{5BEEA024-6E50-4323-A0AF-8573192EF39D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.API", "TWH.API\TWH.API.csproj", "{5BEEA024-6E50-4323-A0AF-8573192EF39D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
