@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace TWH.API
+namespace TWH.RestAPI
 {
     public class Startup
     {
@@ -21,22 +21,11 @@ namespace TWH.API
         }
 
         public IConfiguration Configuration { get; }
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors(options =>
-            {
-                options.AddPolicy(MyAllowSpecificOrigins,
-                builder =>
-                {
-                    builder.WithOrigins("http://example.com",
-                                        "http://www.contoso.com",
-                                        "http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
-                });
-            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,8 +41,6 @@ namespace TWH.API
             app.UseRouting();
 
             app.UseAuthorization();
-            //this was added to allow other wepage to call api
-            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseEndpoints(endpoints =>
             {

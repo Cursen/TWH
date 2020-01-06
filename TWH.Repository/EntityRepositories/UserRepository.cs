@@ -8,7 +8,7 @@ using TWH.Entities.Models;
 
 namespace TWH.Repository.EntityRepositories
 {
-    public class UserRepository : BaseRepository<User, Guid>
+    /*public class UserRepository : BaseRepository<User, Guid>
     {
         private static string code = "NLn9cB4tTkWxuGZSnniFiJaMPjG3jrvQk7/V3U3C2eEJGle8KFuS3c/wXQi0VXWZF1uO/xYh+QJxgitcZtNS+w==";
         public UserRepository(UnitOfWork unitOfWork) : base(unitOfWork)
@@ -31,5 +31,5 @@ namespace TWH.Repository.EntityRepositories
             JwtSecurityToken token = handler.CreateJwtSecurityToken(descriptor);
             return handler.WriteToken(token);
         }
-    }
+    }*/
 }

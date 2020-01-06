@@ -7,11 +7,12 @@ using TWH.Repository.EntityRepositories;
 
 namespace TWH.Services.Services
 {
+    /*
     public class UserService : BaseService<User, Guid>
     {
         public UserService(UnitOfWork unitOfWork) : base(unitOfWork)
         {
             Repository = new UserRepository(unitOfWork);
         }
-    }
+    }*/
 }

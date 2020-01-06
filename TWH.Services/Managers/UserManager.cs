@@ -6,7 +6,7 @@ using TWH.Services.Services;
 
 namespace TWH.Services.Managers
 {
-    public class UserManager
+   /* public class UserManager
     {
         public UserService userService { get; set; }
         string jwtToken;
@@ -16,5 +16,5 @@ namespace TWH.Services.Managers
             userService = new UserService(unitOfWork);
         }
         
-    }
+    }*/
 }

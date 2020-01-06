@@ -7,7 +7,7 @@ using TWH.Entities.Models;
 
 namespace TWH.Entities
 {
-    //TODO change this into rect auth api instead.
+    //TODO make sure it works as entityframework underneath, and isn't just 
     public class DataContext : DbContext
     {
         public static DataContext Create()
@@ -16,14 +16,13 @@ namespace TWH.Entities
         }
         public DataContext() : base("MyContextDB")
         {
-            Database.SetInitializer<DataContext>(new UniDBInitializer<DataContext>());
+            Database.SetInitializer<DataContext>(new DBInitializer<DataContext>());
         }
         public DbSet<Cat> Cats { get; set; }
         public DbSet<catImage> Customers { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Room> Rooms { get; set; }
-        public DbSet<User> Users { get; set; }
-        private class UniDBInitializer<T> : CreateDatabaseIfNotExists<DataContext>
+        private class DBInitializer<T> : CreateDatabaseIfNotExists<DataContext>
         {
             
             protected override void Seed(DataContext context)
