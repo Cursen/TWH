@@ -21,9 +21,9 @@ namespace TWH.Services
             customerService = new CustomerService(unitOfWork);
             bookingService = new BookingService(unitOfWork);
         }
-        public IEnumerable<Booking> ListBookingsForCustomer(Guid userID)
+        public IEnumerable<Booking> ListBookingsForCustomer(string email)
         {
-            return bookingService.SearchFor(x => x.Id == userID);
+            return bookingService.SearchFor(x => x.customer.Email == email);
         }
         //TODO make customer be customerID instead(so you dont transfer object, but object id??
         public Booking PrepareBookingRequest(Guid roomID, Guid userID, DateTime startDate, DateTime endDate, LinkedList<Cat> cats)

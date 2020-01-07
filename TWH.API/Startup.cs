@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using TWH.Entities;
+using TWH.Entities.DBConfig;
+using TWH.Entities.Models;
 
 namespace TWH.API
 {
@@ -18,6 +23,10 @@ namespace TWH.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            using (var context = new AuthDbContext())
+            {
+                context.Database.EnsureCreated();
+            }
         }
 
         public IConfiguration Configuration { get; }
@@ -27,6 +36,9 @@ namespace TWH.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //https://stackoverflow.com/questions/43224177/how-to-add-asp-net-identity-to-asp-net-core-when-webapi-template-is-selected
+            services.AddDbContext<AuthDbContext>();
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AuthDbContext>();
             services.AddCors(options =>
             {
                 options.AddPolicy(MyAllowSpecificOrigins,
@@ -46,11 +58,10 @@ namespace TWH.API
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             //this was added to allow other wepage to call api
             app.UseCors(MyAllowSpecificOrigins);

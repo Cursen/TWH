@@ -7,26 +7,30 @@ using System.Security.Claims;
 
 namespace TWH.Entities.Models
 {
-    class Token
+    public class Token
     {
         //for reference visist: https://www.red-gate.com/simple-talk/dotnet/net-development/jwt-authentication-microservices-net/
+        //https://www.red-gate.com/simple-talk/dotnet/net-development/jwt-authentication-microservices-net/
         private static string code = "uFQBUPlJ79d9e7zw2MaqbXLgahJZBacncjbkxkIMTfzNhXvr0wPzOO2a5fTo2te80wz/neCY2E/5Pg8K1iYqag==";
-        public static string GenerateToken(string username)
+        public static string GenerateToken(string username, int expiresMin = 30)
         {
-            byte[] key = Convert.FromBase64String(code);
-            SymmetricSecurityKey securityKey = new SymmetricSecurityKey(key);
-            SecurityTokenDescriptor descriptor = new SecurityTokenDescriptor
+            var key = Convert.FromBase64String(code);
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[]
                 {
                     new Claim(ClaimTypes.Name, username)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(30),
-                SigningCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.Now.AddMinutes(Convert.ToInt32(expiresMin)),
+
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                SecurityAlgorithms.HmacSha256Signature)
             };
-            JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
-            JwtSecurityToken token = handler.CreateJwtSecurityToken(descriptor);
-            return handler.WriteToken(token);
+            var stoken = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.WriteToken(stoken);
+            return token;
         }
     }
 }

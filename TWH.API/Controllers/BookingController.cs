@@ -23,7 +23,7 @@ namespace TWH.API.Controllers
             bookings = new BookingManager(unitOfWork);
         }
         [HttpGet]
-        [Route("b")]
+        [Route("/GetRoomBookings")]
         public IEnumerable<Booking> GetRoomBookings(int roomNumber)
         {
             //get a list of all bookings of which is this room.
@@ -33,14 +33,14 @@ namespace TWH.API.Controllers
               return roomBookings;
         }
         [HttpGet]
-        [Route("k")]
+        [Route("/GetUserBookings")]
         public IEnumerable<Booking> GetUserBookings(string email)
         {
             var roomBookings = bookings.bookingService.GetAll().Where(x => x.customer.Email == email);
                 return roomBookings;
         }
-        [HttpGet]
-        [Route("z")]
+        [HttpPost]
+        [Route("/PostBooking")]
         public Booking MakeBooking(int roomNumber, DateTime startDate, DateTime endDate, string userEmail, LinkedList<Cat> cats)
         {
             //get list of bookings of given room. Then check if it works
@@ -48,17 +48,6 @@ namespace TWH.API.Controllers
                 Guid roomID = bookings.roomService.SearchFor(x => x.Number == roomNumber).FirstOrDefault().Id;
                 Guid userID = bookings.customerService.SearchFor(x => x.Email == userEmail).FirstOrDefault().Id;
                 return bookings.MakeBooking(bookings.PrepareBookingRequest(roomID, userID, startDate, endDate, cats));
-        }
-        [HttpGet]
-        public IEnumerable<Room> GetRooms()
-        {
-            return bookings.roomService.GetAll();
-        }
-        [HttpPost]
-        [Route("addRoom")]
-        public void addRoom(int roomNumber, int maxCats)
-        {
-            bookings.roomService.Insert(new Room { Number = roomNumber, MaxCats = maxCats});
         }
     }
 }

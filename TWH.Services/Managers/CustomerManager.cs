@@ -8,9 +8,9 @@ using TWH.Services.Services;
 
 namespace TWH.Services.Managers
 {
-    class CustomerManager
+    public class CustomerManager
     {
-        public CustomerService customerService { get; set; };
+        public CustomerService customerService { get; set; }
 
         public CustomerManager(UnitOfWork unitOfWork)
         {
@@ -23,7 +23,7 @@ namespace TWH.Services.Managers
         //TODO look at this for ordering by, based on need.
         public IEnumerable<Customer> GetAllOrderedByName()
         {
-            return customerService.GetAll().OrderBy(x => x.LastName).ToList();
+            return customerService.GetAll().OrderBy(x => x.Lastname).ToList();
         }
     }
 }
