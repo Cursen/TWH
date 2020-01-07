@@ -11,6 +11,7 @@ namespace TWH.Entities.Models
     {
         //for reference visist: https://www.red-gate.com/simple-talk/dotnet/net-development/jwt-authentication-microservices-net/
         //https://www.red-gate.com/simple-talk/dotnet/net-development/jwt-authentication-microservices-net/
+        //TODO change this string to a new gened one, as it will be a copy of another one otherwise.
         private static string code = "uFQBUPlJ79d9e7zw2MaqbXLgahJZBacncjbkxkIMTfzNhXvr0wPzOO2a5fTo2te80wz/neCY2E/5Pg8K1iYqag==";
         public static string GenerateToken(string username, int expiresMin = 30)
         {

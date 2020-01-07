@@ -12,5 +12,11 @@ namespace TWH.Entities.DBConfig
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
         }
+        //you can override it in here instead of using the initaliser grief way.
+        protected override void Seed(DataContext context)
+        {
+
+            base.Seed(context);
+        }
     }
 }

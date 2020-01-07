@@ -23,10 +23,6 @@ namespace TWH.API
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            using (var context = new AuthDbContext())
-            {
-                context.Database.EnsureCreated();
-            }
         }
 
         public IConfiguration Configuration { get; }

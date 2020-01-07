@@ -58,19 +58,19 @@ namespace TWH.API.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [AllowAnonymous]
-        public async string LogIn(string userName, string password)
+        public async Task<string> LogIn(string userName, string password)
         {
             var user = await userManager.FindByNameAsync(userName);
             var result = await signInManager.CheckPasswordSignInAsync(user, password, false);
             if (result.Succeeded)
             {
-                return GenerateToken(user);
+               
             }
             else
             {
 
             }
-            return null;
+            return "";
         }
         //https://sagarjaybhay.com/how-to-delete-identity-user-in-asp-net-core-2019/
         //delete user
@@ -79,7 +79,7 @@ namespace TWH.API.Controllers
         //edit user
         private string GenerateToken(User user, string password)
         {
-            return JwtManager.GenerateToken(User.userName)
+            return Token.GenerateToken(user.UserName);
         }
     }
 }

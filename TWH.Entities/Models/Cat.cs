@@ -15,6 +15,10 @@ namespace TWH.Entities.Models
         public string Desc { get; set; }
         public Guid? ImageID { get; set; }
         public virtual catImage Image { get; set; }
+        public Cat()
+        {
+            Id = Guid.NewGuid();
+        }
             
     }
 }
