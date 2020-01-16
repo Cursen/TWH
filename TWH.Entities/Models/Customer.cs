@@ -11,6 +11,10 @@ namespace TWH.Entities.Models
         public string Lastname { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        public LinkedList<Cat> Cats { get; set; }
+        public virtual ICollection<Cat> Cats { get; set; }
+        public Customer()
+        {
+            Cats = new List<Cat>();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TWH.Entities.Models;
@@ -13,7 +14,7 @@ namespace TWH.API.Controllers
 {
     //[Authorize]
     [ApiController]
-    [Route("[controller]")]
+    [Route("Booking")]
     public class BookingController : BaseController
         {
         private BookingManager bookings;
@@ -31,6 +32,17 @@ namespace TWH.API.Controllers
             var roomBookings = bookings.bookingService.GetAll().Where(x => x.bookedRoom.Number == roomNumber);
 
               return roomBookings;
+        }
+        [HttpGet]
+        //[Route("/GetBookings")]
+        public IEnumerable<Booking> GetBookings()
+        {
+            //get a list of all bookings of which is this room.
+            //then return that list.
+            Debug.WriteLine("got here");
+            var bookingList = bookings.bookingService.GetAll();
+            Debug.WriteLine(bookingList.First().bookedRoom.Id);
+            return bookings.bookingService.GetAll();
         }
         [HttpGet]
         [Route("/GetUserBookings")]

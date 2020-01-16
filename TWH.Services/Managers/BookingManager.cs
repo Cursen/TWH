@@ -38,7 +38,7 @@ namespace TWH.Services
                 cats = cats,
                 startDate = startDate,
                 endDate = endDate,
-                bookinDate = DateTime.Now
+                bookingDate = DateTime.Now
             };
             return booking;
         }
