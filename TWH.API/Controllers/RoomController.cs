@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +10,10 @@ using TWH.Services.Managers;
 
 namespace TWH.API.Controllers
 {
+    //[Produces("application/json")]
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class RoomController : BaseController
     {
         private RoomManager roomManager;
@@ -19,7 +23,14 @@ namespace TWH.API.Controllers
             roomManager = new RoomManager(unitOfWork);
         }
         [HttpGet]
-        public IEnumerable<Room> GetRooms()
+        [Route("getall")]
+        public IActionResult GetRooms()
+        {
+            return Ok(roomManager.roomService.GetAll().ToList());
+        }
+        [HttpGet]
+        [Route("getall2")]
+        public IEnumerable<Room> GetRooms2()
         {
             return roomManager.roomService.GetAll();
         }
