@@ -11,9 +11,10 @@ namespace TWH.Entities.Models
         public virtual Customer customer { get; set; }
         public virtual ICollection<Cat> cats { get; set; }
         public virtual Room bookedRoom { get; set; }
-        public DateTime startDate { get; set; }
-        public DateTime endDate { get; set; }
-        public DateTime bookingDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+        public DateTime? bookingDate { get; set; }
+        public string bookedByUser { get; set; }
         public Booking()
         {
             cats = new List<Cat>();

@@ -12,6 +12,7 @@ namespace TWH.Entities.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public virtual ICollection<Cat> Cats { get; set; }
+        public string postCode { get; set; }
         public Customer()
         {
             Cats = new List<Cat>();

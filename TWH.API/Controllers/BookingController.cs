@@ -7,14 +7,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using TWH.Entities.Models;
 using TWH.Services;
-using AuthorizeAttribute = System.Web.Http.AuthorizeAttribute;
-using HttpGetAttribute = Microsoft.AspNetCore.Mvc.HttpGetAttribute;
-
 namespace TWH.API.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
-    [Route("Booking")]
+    [Route("[controller]")]
     public class BookingController : BaseController
         {
         private BookingManager bookings;
@@ -52,14 +49,48 @@ namespace TWH.API.Controllers
                 return roomBookings;
         }
         [HttpPost]
-        [Route("/PostBooking")]
-        public Booking MakeBooking(int roomNumber, DateTime startDate, DateTime endDate, string userEmail, LinkedList<Cat> cats)
+        [Route("makebooking")]
+        public IActionResult MakeBooking([FromBody] Booking booking)
         {
-            //get list of bookings of given room. Then check if it works
-            var roomBookings = GetRoomBookings(roomNumber);
-                Guid roomID = bookings.roomService.SearchFor(x => x.Number == roomNumber).FirstOrDefault().Id;
-                Guid userID = bookings.customerService.SearchFor(x => x.Email == userEmail).FirstOrDefault().Id;
-                return bookings.MakeBooking(bookings.PrepareBookingRequest(roomID, userID, startDate, endDate, cats));
+            Debug.WriteLine("Ok booking");
+                return Ok(bookings.MakeBooking(booking));
+        }
+        [HttpGet]
+        [Route("getroomsbydates")]
+        public IEnumerable<Room> GetRoomsByDates(string startDate, string endDate, int catAmount)
+        {
+            Debug.WriteLine("Startdate: "+startDate);
+            Debug.WriteLine("Enddate: "+endDate);
+            Debug.WriteLine("catAmount:" + catAmount);
+            if (startDate != null && endDate != null)
+            {
+                DateTime startDateD = DateTime.Parse(startDate);
+                DateTime endDateD = DateTime.Parse(endDate);
+                return bookings.GetRoomsByDates(startDateD, endDateD, catAmount);
+            }
+            else
+            {
+                return null;
+            }
+        }
+        [HttpGet]
+        [Route("gettodaysbookedrooms")]
+        public IEnumerable<Booking> GetTodaysBookedRooms()
+        {
+            return bookings.GetTodaysBookedRooms();
+        }
+        [HttpGet]
+        [Route("getAllBookedRooms")]
+        public IEnumerable<Booking> GetAllBookedRooms()
+        {
+            return bookings.GetAllBookedRooms();
+        }
+        [HttpGet]
+        [Route("getroomstowatch")]
+        [AllowAnonymous]
+        public IEnumerable<Room> GetRoomsToWatch(string email, string postcode)
+        {
+            return bookings.GetRoomsToWatch(email, postcode);
         }
     }
 }

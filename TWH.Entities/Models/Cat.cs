@@ -8,7 +8,7 @@ namespace TWH.Entities.Models
     public class Cat : BaseEntityID<Guid>
     {
         //TODO set ranges. Consider DataAnnotations replacement.
-        [StringLength(15, ErrorMessage = "Value of ChipID must be between 10-15.", MinimumLength = 10)]
+        [StringLength(15, ErrorMessage = "Value of ChipID must be between 10-15.")]
         public string ChipID { get; set; }
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
