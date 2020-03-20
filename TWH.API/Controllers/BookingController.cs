@@ -88,7 +88,7 @@ namespace TWH.API.Controllers
         [HttpGet]
         [Route("getroomstowatch")]
         [AllowAnonymous]
-        public IEnumerable<Room> GetRoomsToWatch(string email, string postcode)
+        public IEnumerable<int> GetRoomsToWatch(string email, string postcode)
         {
             return bookings.GetRoomsToWatch(email, postcode);
         }

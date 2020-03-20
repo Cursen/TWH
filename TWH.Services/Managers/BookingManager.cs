@@ -52,13 +52,13 @@ namespace TWH.Services
                 return bookingRequest;
                 }
         }
-        public IEnumerable<Room> GetRoomsToWatch(string email, string postcode)
+        public IEnumerable<int> GetRoomsToWatch(string email, string postcode)
         {
             var bookings = bookingService.SearchFor(x => x.customer.Email == email && x.customer.postCode == postcode).ToList();
-            List<Room> OkRooms = new List<Room>();
+            List<int> OkRooms = new List<int>();
             foreach(var booking in bookings)
             {
-                OkRooms.Add(booking.bookedRoom);
+                OkRooms.Add(booking.bookedRoom.Number);
             }
             return OkRooms;
         }

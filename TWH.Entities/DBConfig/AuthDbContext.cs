@@ -7,7 +7,6 @@ using TWH.Entities.Models;
 
 namespace TWH.Entities.DBConfig
 {
-    //https://www.pluralsight.com/guides/configuring-asp-net-identity
     public class AuthDbContext : IdentityDbContext<User>
     {
         public AuthDbContext(DbContextOptions options) : base(options)

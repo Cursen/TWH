@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TWH.Entities.Models
 {
+    //only IdentityUser functionalities is needed.
     public class User : IdentityUser
     {
     }
