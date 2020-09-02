@@ -15,10 +15,6 @@ namespace TWH.Entities.Models
         [Required(ErrorMessage = "Desc is required")]
         public string Desc { get; set; }
         //public Guid? ImageID { get; set; }
-        //public virtual catImage Image { get; set; }
-        public Cat()
-        {
-            Id = Guid.NewGuid();
-        }        
+        //public virtual catImage Image { get; set; } 
     }
 }

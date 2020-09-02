@@ -8,8 +8,8 @@ namespace TWH.Entities
 {
     public abstract class BaseEntityID<TEntityIdType>
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public TEntityIdType Id { get; protected set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public TEntityIdType Id { get; set; }
     }
 }

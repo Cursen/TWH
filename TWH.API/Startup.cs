@@ -3,11 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.IdentityModel.Tokens.Jwt;
-using IdentityServer4.AccessTokenValidation;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
@@ -49,6 +44,7 @@ namespace TWH.API
                 options.AddPolicy(MyAllowSpecificOrigins,
                 builder =>
                 {
+                                           //change this to whatever the localhost angular is launched in. Or in the future, its dns name
                     builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                 });
             });
@@ -74,7 +70,7 @@ namespace TWH.API
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-            //this was added to allow other wepage to call api
+            //this was added to allow the other wepages calls
 
             app.UseEndpoints(endpoints =>
             {

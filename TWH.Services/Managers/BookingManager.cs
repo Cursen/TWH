@@ -1,6 +1,7 @@
 ﻿using Itenso.TimePeriod;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -52,36 +53,40 @@ namespace TWH.Services
                 return bookingRequest;
                 }
         }
-        public IEnumerable<Room> GetRoomsToWatch(string email, string postcode)
+        public IEnumerable<int> GetRoomsToWatch(string email, string postcode)
         {
             var bookings = bookingService.SearchFor(x => x.customer.Email == email && x.customer.postCode == postcode).ToList();
-            List<Room> OkRooms = new List<Room>();
+            List<int> OkRooms = new List<int>();
             foreach(var booking in bookings)
             {
-                OkRooms.Add(booking.bookedRoom);
+                OkRooms.Add(booking.bookedRoom.Number);
             }
             return OkRooms;
         }
+        //Note that it is currently expecting startDate > endDate
+        //Used to get all rooms available within a range of dates.
         public IEnumerable<Room> GetRoomsByDates(DateTime startDate, DateTime endDate, int catAmount)
         {
-            var rooms = roomService.GetAll();
-            List<Room> OkRooms = new List<Room>();
-            TimePeriodCollection periods = new TimePeriodCollection();
-            periods.Add(new TimeRange(startDate, endDate));
-            foreach (var room in rooms)
+            //TODO utilise Exception types for the layers by wrapping them, look at 168 of adaptive code to solve this. 
+            //Additionally it needs a test.
+            if (startDate > endDate)
             {
-                Debug.WriteLine("outside");
-                if (!bookingService.Any(x => x.startDate < endDate && startDate < x.endDate))
-                // if (!bookingService.Any(x => x.bookedRoom.Id == room.Id && x.startDate.CompareTo(endDate) && startDate.CompareTo(x.endDate))
+                throw new ArgumentException("startDate Cannot be Bigger than Endate.");
+            }
+            var rooms = roomService.GetAll().ToList();
+            List<Room> OkRooms = new List<Room>();
+            var bookings = bookingService.SearchFor(x => x.startDate <= endDate && startDate <= x.endDate);
+            Debug.WriteLine($"bookings found: {bookings.Count()}");
+            List<Room> bookedRooms = new List<Room>();
+            foreach(var booking in bookings)
+            {
+                if(!bookedRooms.Any(x => x.Number == booking.bookedRoom.Number))
                 {
-                    Debug.WriteLine("Got inside if statement");
-                    Debug.WriteLine(startDate);
-                    Debug.WriteLine(endDate);
-                    Debug.WriteLine("outside");
-                    OkRooms.Add(room);
+                    bookedRooms.Add(booking.bookedRoom);
                 }
             }
-            return OkRooms;
+            var okRooms = rooms.Except(bookedRooms);
+            return okRooms;
         }
 
         public IEnumerable<Booking> GetAllBookedRooms()

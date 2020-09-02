@@ -20,18 +20,29 @@ namespace TWH.Services.Managers
         {
             return roomService.GetAll();
         }
-        //TODO add test that checks if any room exists of same roomNumber yett.
-        public void addRoom(int roomNumber, int maxCats)
+        //TODO Return error
+        public void addRoom(Room room)
         {
-            roomService.Any(x => x.Number == roomNumber);
-            roomService.Insert(new Room { Number = roomNumber, MaxCats = maxCats });
-
+            if(!roomService.Any(x => x.Number == room.Number))
+            {
+                roomService.Insert(new Room { Number = room.Number, MaxCats = room.MaxCats });
+            }
         }
         //TODO test that editing a room works.
-        public void editRoom(int roomNumber, int maxCats)
+        public void editRoom(Room room)
         {
             //find room based on number, then make attributes same as given.
-            //TODO test difference in speed between doing getAll, and sort in here. And getall, get in repo
+            if(room != null)
+            {
+                var foundRoom = roomService.GetById(room.Id);
+                if(foundRoom == null)
+                {
+                    //TODO consider returning information that the edit ended up doing nothing.
+                    return;
+                }
+                foundRoom = room;
+                roomService.SaveChanges();
+            }
         }
         public Room getRoom(int roomNumber)
         {

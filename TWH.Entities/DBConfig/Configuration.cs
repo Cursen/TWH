@@ -15,7 +15,6 @@ namespace TWH.Entities.DBConfig
         //you can override it in here instead of using the initaliser grief way.
         protected override void Seed(DataContext context)
         {
-
             base.Seed(context);
         }
     }

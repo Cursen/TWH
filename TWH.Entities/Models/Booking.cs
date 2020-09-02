@@ -15,6 +15,12 @@ namespace TWH.Entities.Models
         public DateTime? endDate { get; set; }
         public DateTime? bookingDate { get; set; }
         public string bookedByUser { get; set; }
+        //both payment options are expected to be in pence, and not 20.50£, and should have a quick calculation in the presentation layer instead.
+        public int amountToPay { get; set; }
+        public int amountPayed { get; set; }
+        public string foodType { get; set; }
+        public Boolean cctvEnabled { get; set; }
+        
         public Booking()
         {
             cats = new List<Cat>();

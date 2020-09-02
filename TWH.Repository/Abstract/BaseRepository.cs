@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,7 +56,6 @@ namespace TWH.Repository
         {
             return DbContext.Set<TEntity>().Any(predicate);
         }
-
         public void Insert(TEntity entity)
         {
             DbContext.Set<TEntity>().Add(entity);
@@ -66,6 +66,5 @@ namespace TWH.Repository
         {
             return DbContext.Set<TEntity>().Where(predicate).ToList();
         }
-
     }
 }

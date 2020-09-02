@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -46,7 +47,14 @@ namespace TWH.Services
         }
         public virtual void Insert(TEntity entity)
         {
-            Repository.Insert(entity);
+            try {
+                Repository.Insert(entity);
+            }
+            //TODO Implement better catch system here, and in Edit function.
+            catch(Exception e)
+            {
+                Debug.WriteLine("Error on insert");
+            }
         }
         public virtual void Delete(TEntity entity)
         {
