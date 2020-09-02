@@ -11,10 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.Services", "TWH.Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.API", "TWH.API\TWH.API.csproj", "{5BEEA024-6E50-4323-A0AF-8573192EF39D}"
 EndProject
+<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TWH.UnitTests", "TWH.UnitTests\TWH.UnitTests.csproj", "{B66D5B12-BEBA-4C05-8566-ECAFC12EE192}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TWH.xUnitTests", "TWH.xUnitTests\TWH.xUnitTests.csproj", "{FD5949EB-B59C-47CB-975C-813A4787836E}"
 EndProject
+=======
+>>>>>>> angularsep
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +76,7 @@ Global
 		{5BEEA024-6E50-4323-A0AF-8573192EF39D}.Release|iPhone.Build.0 = Release|Any CPU
 		{5BEEA024-6E50-4323-A0AF-8573192EF39D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{5BEEA024-6E50-4323-A0AF-8573192EF39D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+<<<<<<< HEAD
 		{B66D5B12-BEBA-4C05-8566-ECAFC12EE192}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B66D5B12-BEBA-4C05-8566-ECAFC12EE192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B66D5B12-BEBA-4C05-8566-ECAFC12EE192}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -97,6 +101,8 @@ Global
 		{FD5949EB-B59C-47CB-975C-813A4787836E}.Release|iPhone.Build.0 = Release|Any CPU
 		{FD5949EB-B59C-47CB-975C-813A4787836E}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FD5949EB-B59C-47CB-975C-813A4787836E}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+=======
+>>>>>>> angularsep
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
