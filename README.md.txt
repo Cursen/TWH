@@ -1,0 +1,2 @@
+C# API project which shows the usage of entity framework core, patterns, and authorisation. Still a work in progress.
+It was originally developed with a separated Angular2/typescript webpage interacting with it, and auth0 as a Authorisation service.
